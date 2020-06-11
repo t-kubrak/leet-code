@@ -1,24 +1,24 @@
-def maxProfit(prices):
+def maxProfitPeakValley(prices):
     is_buy = True
     to_sell = None
     income = []
 
     for i in range(len(prices)):
-        price = prices[i]
-        next_price = prices[i + 1] if i + 1 < len(prices) else 0
+        current = prices[i]
+        next = prices[i + 1] if i + 1 < len(prices) else 0
 
         if is_buy:
-            if price > next_price:
+            if current > next:
                 continue
 
-            to_sell = price
+            to_sell = current
             is_buy = False
             continue
 
-        if price < next_price:
+        if current < next: # sell
             continue
 
-        income.append(price - to_sell)
+        income.append(current - to_sell)
         to_sell = None
         is_buy = True
 

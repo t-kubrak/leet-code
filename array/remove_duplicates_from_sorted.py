@@ -1,6 +1,6 @@
 def removeDuplicates(nums):
-    if len(nums) < 2:
-        return 1
+    if len(nums) == 0:
+        return 0
 
     unique_index = 1
 

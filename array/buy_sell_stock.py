@@ -24,7 +24,18 @@ def maxProfit(prices):
 
     return sum(income)
 
+def maxProfit(prices):
+    profit = 0
+
+    for i in range(len(prices) - 1):
+        current = prices[i]
+        next = prices[i+1]
+
+        if current < next:
+            profit += next - current
+
+    return profit
+
 result = maxProfit([7,1,5,3,6,4])
 
 print(result)
-

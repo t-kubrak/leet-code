@@ -1,8 +1,8 @@
-from collections import defaultdict
+from collections import defaultdict, Counter
 from typing import List
 
 
-def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
+def intersect_one(nums1: List[int], nums2: List[int]) -> List[int]:
     unique_nums1 = defaultdict(int)
     unique_nums2 = defaultdict(int)
 
@@ -20,6 +20,33 @@ def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
 
             for i in range(count):
                 result.append(num)
+
+    return result
+
+
+def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
+    unique_nums1 = {}
+    result = []
+
+    for num in nums1:
+        unique_nums1[num] = unique_nums1.get(num, 0) + 1
+
+    for num in nums2:
+        if unique_nums1.get(num, 0) != 0:
+            result.append(num)
+            unique_nums1[num] -= 1
+
+    return result
+
+
+def intersect_two(nums1: List[int], nums2: List[int]) -> List[int]:
+    counts = Counter(nums1)
+    result = []
+
+    for num in nums2:
+        if counts[num] > 0:
+            result += num,
+            counts[num] -= 1
 
     return result
 

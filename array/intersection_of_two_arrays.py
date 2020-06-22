@@ -51,5 +51,27 @@ def intersect_two(nums1: List[int], nums2: List[int]) -> List[int]:
     return result
 
 
+def intersect_three(nums1: List[int], nums2: List[int]) -> List[int]:
+    nums1.sort()
+    nums2.sort()
+    i1 = i2 = 0
+    result = []
+
+    while True:
+        try:
+            if nums1[i1] > nums2[i2]:
+                i2 += 1
+            elif nums2[i2] > nums1[i1]:
+                i1 += 1
+            else:
+                result.append(nums1[i1])
+                i1 += 1
+                i2 += 1
+        except IndexError:
+            break
+
+    return result
+
+
 result = intersect([4, 9, 4, 5], [9, 4, 9, 8, 4])
 print(result)

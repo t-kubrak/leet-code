@@ -2,22 +2,9 @@ from typing import List
 
 
 def is_valid_sudoku(board: List[List[str]]) -> bool:
-    rows_valid = are_rows_valid(board)
-
-    if not rows_valid:
-        return False
-
-    columns_valid = are_columns_valid(board)
-
-    if not columns_valid:
-        return False
-
-    squares_valid = are_squares_valid(board, 3, 3, 3)
-
-    if not squares_valid:
-        return False
-
-    return True
+    return are_rows_valid(board) and \
+        are_columns_valid(board) and \
+        are_squares_valid(board, 3)
 
 
 def are_rows_valid(board: List[List[str]]) -> bool:
@@ -52,7 +39,7 @@ def are_columns_valid(board: List[List[str]]) -> bool:
     return True
 
 
-def are_squares_valid(board: List[List[str]], offset_size: int, row_size: int, column_size: int) -> bool:
+def are_squares_valid(board: List[List[str]], offset_size: int) -> bool:
     for row_offset in range(0, len(board), offset_size):
         for column_offset in range(0, len(board), offset_size):
             square_values_set = set()

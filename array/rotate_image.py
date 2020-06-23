@@ -54,7 +54,7 @@ def to_left(matrix, bottom_row, offset):
 
     for row in range(offset, len(matrix) - offset):
         if row != 0 + offset and row < len(matrix) - 1 - offset:
-            left_col.append(matrix[row][0])
+            left_col.append(matrix[row][0 + offset])
 
         matrix[row][0 + offset] = bottom_row[i]
         i += 1
@@ -65,7 +65,7 @@ def to_left(matrix, bottom_row, offset):
 def to_top(matrix, left_col, offset):
     i = len(left_col) - 1
 
-    for col in range(1 + offset, len(left_col) + 1 - offset):
+    for col in range(1 + offset, len(left_col) + 1 + offset):
         matrix[0 + offset][col] = left_col[i]
         i -= 1
 
@@ -87,5 +87,14 @@ matrix_4_4: List[List[int]] = [
     [9, 10, 11, 12],
     [13, 14, 15, 16]
 ]
-result = rotate(matrix_2_2)
+
+matrix_5_5 = [
+    [1, 2, 3, 4, 5],
+    [6, 7, 8, 9, 10],
+    [11, 12, 13, 14, 15],
+    [16, 17, 18, 19, 20],
+    [21, 22, 23, 24, 25]
+]
+
+result = rotate(matrix_5_5)
 print(result)

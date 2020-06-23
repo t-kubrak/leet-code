@@ -18,13 +18,13 @@ def to_right(matrix, top_row):
 
 def to_bottom(matrix, right_col):
     bottom_row = []
-    i = 0
+    i = len(right_col) - 1
     first = right_col[-1]
 
     for col in range(len(matrix[-1])):
         bottom_row.append(matrix[-1][col])
-        matrix[-1][~col] = right_col[i]
-        i += 1
+        matrix[-1][col] = right_col[i]
+        i -= 1
 
     bottom_row[-1] = first
 
@@ -36,7 +36,7 @@ def to_left(matrix, bottom_row):
     i = 0
 
     for row in range(len(matrix)):
-        if row != 0 and row != len(matrix) - 1:
+        if row != 0 and row < len(matrix) - 1:
             top_row.append(matrix[row][0])
 
         matrix[row][0] = bottom_row[i]
@@ -46,11 +46,11 @@ def to_left(matrix, bottom_row):
 
 
 def to_top(matrix, left_col):
-    i = 0
+    i = len(left_col) - 1
 
     for col in range(1, len(left_col) + 1):
         matrix[0][col] = left_col[i]
-        i += 1
+        i -= 1
 
 
 def rotate(matrix: List[List[int]]):
@@ -75,5 +75,12 @@ matrix: List[List[int]] = [
     [4, 5, 6],
     [7, 8, 9]
 ]
-result = rotate(matrix)
+
+matrix_4_4: List[List[int]] = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+    [13, 14, 15, 16]
+]
+result = rotate(matrix_4_4)
 print(result)

@@ -12,6 +12,11 @@ def is_valid_sudoku(board: List[List[str]]) -> bool:
     if not columns_valid:
         return False
 
+    squares_valid = are_squares_valid(board, 3, 3, 3)
+
+    if not squares_valid:
+        return False
+
     return True
 
 
@@ -45,6 +50,32 @@ def are_columns_valid(board: List[List[str]]) -> bool:
             column_values_set.add(value)
 
     return True
+
+
+def are_squares_valid(board: List[List[str]], offset_size: int, row_size: int, column_size: int) -> bool:
+    for row_offset in range(0, len(board), offset_size):
+        for column_offset in range(0, len(board), offset_size):
+            square_values_set = set()
+
+            for row in range(0 + row_offset, len(board)):
+                if row == row_offset + offset_size:
+                    break
+
+                for column in range(0 + column_offset, len(board[0])):
+                    if column == column_offset + offset_size:
+                        break
+
+                    value = board[row][column]
+
+                    if value == ".":
+                        continue
+                    elif value in square_values_set:
+                        return False
+
+                    square_values_set.add(value)
+
+    return True
+
 
 input = [
     ["5", "3", ".", ".", "7", ".", ".", ".", "."],

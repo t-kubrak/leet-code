@@ -23,5 +23,5 @@ def reverse_string_3(s: List[str]) -> None:
     reverse(0, len(s) - 1)
 
 input = ["H", "a", "n", "n", "a", "h"]
-result = reverse_string_3(input)
-print(result)
+reverse_string(input)
+print(input)

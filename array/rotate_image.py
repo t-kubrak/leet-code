@@ -1,7 +1,7 @@
 from typing import List
 
 
-def rotate(matrix: List[List[int]]):
+def rotate_1st(matrix: List[List[int]]):
     rows = len(matrix)
 
     if rows > 3:
@@ -109,6 +109,22 @@ matrix_6_6 = [
     [25, 26, 27, 28, 29, 30],
     [31, 32, 33, 34, 35, 36]
 ]
+
+
+def rotate(matrix):
+    n = len(matrix)
+
+    # transpose
+    for i in range(1, n):
+        for j in range(i):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+    # reverse rows
+    for row in matrix:
+        for j in range(n // 2):
+            row[j], row[~j] = row[~j], row[j]
+
+    return matrix
+
 
 result = rotate(matrix_4_4)
 print(result)

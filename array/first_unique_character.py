@@ -25,4 +25,5 @@ def first_unique_char_2(s: str) -> int:
 
 
 result = first_unique_char("loveleetcode")
+assert result == 2
 print(result)

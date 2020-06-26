@@ -4,11 +4,11 @@ def my_atoi(str: str) -> int:
     if not str:
         return 0
 
-    is_negative = False
+    sign = 1
     num = 0
 
     if str[0] == '-':
-        is_negative = True
+        sign = -1
         str = str[1:]
     elif str[0] == '+' and len(str) > 1 and str[1].isdigit():
         str = str[1:]
@@ -21,12 +21,11 @@ def my_atoi(str: str) -> int:
 
         num = num * 10 + int(str[i])
 
-    if is_negative:
-        num = -num
+    num = sign * num
 
     if num > 2 ** 31 - 1:
         return 2 ** 31 - 1
-    elif num < -2 ** 31:
+    elif num < -(2 ** 31):
         return -(2 ** 31)
 
     return num

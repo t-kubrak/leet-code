@@ -21,12 +21,15 @@ def my_atoi(str: str) -> int:
 
         num = num * 10 + int(str[i])
 
-        if not is_negative and num > 2 ** 31 - 1:
-            return 2 ** 31 - 1
-        elif is_negative and -num < -2 ** 31:
-            return -(2 ** 31)
+    if is_negative:
+        num = -num
 
-    return -num if is_negative else num
+    if num > 2 ** 31 - 1:
+        return 2 ** 31 - 1
+    elif num < -2 ** 31:
+        return -(2 ** 31)
+
+    return num
 
 
 result = my_atoi("+1")

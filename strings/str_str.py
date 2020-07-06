@@ -15,9 +15,9 @@ result = str_str("hello", "ll")
 print(result)
 assert result == 2
 
-result = str_str("aaaaa", "bba")
+result = str_str("aabaa", "baa")
 print(result)
-assert result == -1
+assert result == 2
 
 result = str_str("aaa", "aaaa")
 print(result)

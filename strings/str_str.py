@@ -2,26 +2,14 @@ def str_str(haystack: str, needle: str) -> int:
     if not needle:
         return 0
 
-    if len(haystack) < len(needle):
-        return -1
-
-    for i in range(len(haystack)):
-        search = ""
-
-        try:
-            for j in range(len(needle)):
-                if haystack[i + j] != needle[j]:
-                    break
-
-                search += haystack[i + j]
-        except IndexError:
-            return -1
-
-        if search == needle:
-            return i
+    for i in range(len(haystack) - len(needle) + 1):
+        for j in range(len(needle)):
+            if haystack[i + j] != needle[j]:
+                break
+            if j == len(needle) -1:
+                return i
 
     return -1
-
 
 result = str_str("hello", "ll")
 print(result)
@@ -34,6 +22,10 @@ assert result == -1
 result = str_str("aaa", "aaaa")
 print(result)
 assert result == -1
+
+result = str_str("a", "a")
+print(result)
+assert result == 0
 
 result = str_str("mississippi", "issipi")
 print(result)
